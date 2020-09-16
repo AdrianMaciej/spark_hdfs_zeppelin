@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  zeppelin:
+   image: zeppelin
+   container_name: zeppelin
+   networks:
+    - spark_hdfs_zeppelin_vpc_network
+   ports:
+     - 9090:8080
+   volumes:
+     - ./workspace/notebooks/zeppelin:/zeppelin/notebook/workspace
+networks:
+  spark_hdfs_zeppelin_vpc_network:
+    external: true

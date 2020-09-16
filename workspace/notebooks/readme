@@ -1,0 +1,2 @@
+This folder is attached to /zeppelin/notebook/workspace directory on zeppelin container.
+If you want to persist the notebook, create it under that directory.

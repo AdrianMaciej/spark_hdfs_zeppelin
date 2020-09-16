@@ -1,0 +1,65 @@
+version: "3.8"
+services:
+  spark-master:
+    image: spark-master
+    container_name: spark-master
+    ports:
+      - 8080:8080
+      - 7077:7077
+    networks: 
+      -  vpc_network
+  spark-worker:
+    image: spark-worker
+    environment:
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=1024m
+    ports:
+      - 8081-8087:8081
+    depends_on:
+      - spark-master
+    networks: 
+      - vpc_network
+  spark-history-server:
+    image: spark-history-server
+    container_name: spark-history-server
+    ports:
+      - 18080:18080
+    depends_on:
+      - hadoop-namenode
+    networks: 
+      - vpc_network
+  hadoop-namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
+    container_name: hadoop-namenode
+    volumes:
+      - ./workspace/hdfs:/workspace/hdfs
+    environment:
+      - CLUSTER_NAME=test
+    env_file:
+      - ./configs/hadoop/hadoop.env
+    ports:
+      - "9870:50070"
+    volumes:
+      - type: volume
+        source: hadoop_namenode_vol
+        target: /hadoop/dfs/name
+    networks: 
+      - vpc_network
+  hadoop-datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
+    depends_on:
+      - hadoop-namenode
+    env_file:
+      - ./configs/hadoop/hadoop.env
+    volumes:
+      - type: volume
+        source: hadoop_datanode_vol
+        target: /hadoop/dfs/data
+    networks: 
+      - vpc_network
+networks:
+  vpc_network:
+    driver: bridge
+volumes:
+  hadoop_namenode_vol:
+  hadoop_datanode_vol:

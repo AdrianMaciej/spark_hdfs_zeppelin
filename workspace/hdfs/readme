@@ -1,0 +1,5 @@
+This folder is attached to hdfs namenode.
+If you want to add jars to hdfs:
+1. Move it here
+2. Exec into hadoop-namenode
+3. hdfs dfs -put /workspace/yourjar.jar

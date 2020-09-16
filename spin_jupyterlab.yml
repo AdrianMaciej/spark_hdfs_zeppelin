@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  jupyterlab:
+   image: jupyterlab
+   container_name: jupyterlab
+   networks:
+    - spark_hdfs_zeppelin_vpc_network
+   ports:
+     - 8888:8888
+   volumes:
+     - ./workspace/notebooks/jupyterlab:/jupyterlab
+networks:
+  spark_hdfs_zeppelin_vpc_network:
+    external: true
