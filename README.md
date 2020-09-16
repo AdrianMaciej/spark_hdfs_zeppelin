@@ -59,6 +59,6 @@ So here is a list of available interface on your localhost once the whole thing 
 | 8888      | jupyterlab           | JupyterLab web app |
 | 9090      | zeppelin             | Zeppeling web app |
 
-## Cavients/Problems/ToDos
-- Spining up cluster for the first time won't create the directories in hdfs and spark history server is going to crash - probably could be fixed somehow
-- From spark master UI you can't dig into workers because it refers to the workers by the internal IP addresses and from localhost we don't have access to that so it won't work - you can either change the url to point to `localhost` and correct `port` (8081-8087) depending on the worker you are trying to connect to.
+## Caveats/Problems/ToDos
+- Spinning up cluster for the first time won't create the directories in hdfs and spark history server is going to crash - probably could be fixed somehow
+- From spark master UI you can't dig into workers because it refers to the workers by the internal IP addresses and from localhost we don't have access to that so it won't work - you can either change the URL to point to `localhost` and correct `port` (8081-8087) depending on the worker you are trying to connect to.
