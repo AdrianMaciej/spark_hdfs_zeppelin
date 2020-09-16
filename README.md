@@ -57,7 +57,7 @@ So here is a list of available interface on your localhost once the whole thing 
 | 9870      | hadoop-namenode      | HDFS file system view |
 | 18080     | spark-history-server | Spark history UI where all the apps should be logged in |
 | 8888      | jupyterlab           | JupyterLab web app |
-| 9090      | zeppelin             | Zeppeling web app |
+| 9090      | zeppelin             | Zeppelin web app |
 
 ## Caveats/Problems/ToDos
 - Spinning up cluster for the first time won't create the directories in hdfs and spark history server is going to crash - probably could be fixed somehow
